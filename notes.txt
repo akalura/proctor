@@ -1,0 +1,38 @@
+
+Installing PI Software
+https://youtu.be/N1V71HiKueo
+
+Install the file sharing between pi and the local PC
+https://www.youtube.com/watch?v=1tAP273Rvhg
+
+To mound the file in PI console.
+================================
+sudo mount.cifs -o username=localshare //192.168.1.61/sharedFolder ~/windows_shared
+
+
+connecting to the PI system 
+=====
+ssh akalura@192.168.1.53
+
+
+ffmpeg -f x11grab -framerate 1 -video_size 1920x1080 -i :0.0 -vframes 1 "ak.jpeg"  -hide_banner  -y
+
+-y ==> flag will override the file
+-hide_banner ==> will not show the basic banner info at the start of the script
+
+ffmpeg -f v4l2 -framerate 1 -video_size 1920x1080 -i /dev/video0 -vframes 1 "ak.jpeg"
+
+ffmpeg -f x11grab -framerate 1 -video_size 1920x1080 -i :0.0 -vframes 1 -update 1 "ak.jpeg"
+
+
+
+---> THIS IS FINAL 
+ffmpeg -f v4l2 -video_size 1920x1080 -input_format mjpeg -i /dev/video0 -vframes 1 -update 1 "ak.jpeg" -hide_banner  -y
+
+
+install python package
+---
+sudo pip install ffmpeg-python --break-system-packages
+
+
+ffmpeg -f v4l2 -video_size 1920x1080 -i /dev/video0 -vframes 1 -update 1 "ak.jpeg"
