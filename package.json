@@ -8,6 +8,9 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
+    "hptt-server": "^14.1.2",
+    "http-server": "^14.1.1",
+    "pm2": "^6.0.14",
     "powershell": "^2.3.3",
     "sqlite3": "^5.1.7"
   },
