@@ -25,6 +25,7 @@ db.run(`
     is_scraped INTEGER,
     scraped_data TEXT,
     scraped_answer TEXT,
+    scraped_counter INTEGER,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `, (err) => {

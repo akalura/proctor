@@ -5,9 +5,38 @@ https://youtu.be/N1V71HiKueo
 Install the file sharing between pi and the local PC
 https://www.youtube.com/watch?v=1tAP273Rvhg
 
+
+
+
 To mound the file in PI console.
 ================================
+-----first install
+sudo apt-get install cifs-utils
+
 sudo mount.cifs -o username=localshare //192.168.1.61/sharedFolder ~/windows_shared
+
+
+--version
+apt-cache policy cifs-utils
+
+========================================================================
+========================  elevate permission  ==========================
+========================================================================
+https://askubuntu.com/questions/1384341/21-10-unable-to-write-to-samba-share-without-su-in-ubuntu-windows-can-write-u#:~:text=CIFS%20will%20mount%20a%20share,to%20the%20list%20of%20options.
+
+akalura@pi5:~ $ sudo chown akalura:akalura ~/windows_shared
+akalura@pi5:~ $ sudo chmod 775 ~/windows_shared
+
+sudo mount.cifs //192.168.1.61/sharedFolder2 ~/windows_shared   -o uid=akalura,gid=akalura,nounix,username=localshare,password=Important1!
+========================================================================
+
+
+
+
+
+
+
+
 
 
 connecting to the PI system 
@@ -36,3 +65,59 @@ sudo pip install ffmpeg-python --break-system-packages
 
 
 ffmpeg -f v4l2 -video_size 1920x1080 -i /dev/video0 -vframes 1 -update 1 "ak.jpeg"
+
+
+running http server
+===================
+npx http-server ./nodeHttpServer
+
+
+
+
+
+==================
+raspberry pi to get config info..
+
+ifconfig
+
+
+
+
+
+========================================================================
+========================  elevate permission  ==========================
+========================================================================
+akalura@pi5:~ $ sudo chown akalura:akalura ~/windows_shared
+akalura@pi5:~ $ sudo chmod 775 ~/windows_shared
+
+
+sudo mount.cifs //192.168.1.61/sharedFolder2 ~/windows_shared   -o uid=akalura,gid=akalura,nounix,username=localshare,password=Important1!
+
+
+
+Install CORS in the flash server in raspberry PI to prevent this issue :  net::ERR_FAILED 200 (OK)
+pip install flask-cors
+sudo apt install python3-flask-cors   (to install system wide)
+
+
+
+======================
+node.js process runner
+========================
+pm2 start processUnscrapedQuestions.js --name 40-seconds-scrape-questions
+
+
+////
+
+
+
+
+=====================================
+1. node fileChangeWattcher.js
+2. node autoProcessQuestions.js
+
+   ssh akalura@192.168.1.53
+3. python3 app.py
+
+4. npx http-server ./nodeHttpServer
+=====================================
